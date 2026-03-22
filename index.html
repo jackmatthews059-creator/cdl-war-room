@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="CDL 2026 analytics dashboard with regression-backed player impact ratings, scout reports, and match predictions.">
-<meta property="og:title" content="CDL War Room — Pro Scouting Tool">
-<meta property="og:description" content="The most advanced CDL analytics tool. Player impact ratings, scout reports, and map-mode veto predictions for CDL 2026.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CDL War Room">
-<meta name="twitter:description" content="The most advanced CDL analytics dashboard. CIR impact ratings, scout reports, map-mode veto predictions.">
-<meta name="theme-color" content="#111318">
-<title>CDL War Room — Pro CDL Analytics</title>
+<title>CDL War Room</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -24,7 +16,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px
 .w{max-width:1160px;margin:0 auto;padding:0 20px 80px}
 
 .hd{padding:16px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-bottom:1px solid var(--bd)}
-.hd-t{font-size:20px;font-weight:900;color:var(--h);letter-spacing:-.3px}
+.hd-t{font-size:24px;font-weight:900;color:var(--h);letter-spacing:-.5px}
 .hd-t span{font-weight:400;color:var(--cap)}
 .hd-m{display:flex;gap:20px}
 .hd-n b{font-family:var(--mono);font-size:18px;color:var(--grn);display:block}
@@ -35,9 +27,9 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px
 .tb button:hover{color:var(--tx)}
 .tb button.on{color:var(--h);border-bottom-color:var(--grn)}
 
-.sec{font-size:11px;font-weight:800;color:var(--sub);letter-spacing:1.5px;text-transform:uppercase;margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+.sec{font-size:12px;font-weight:900;color:var(--h);letter-spacing:2px;text-transform:uppercase;margin:28px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--bd)}
 
-.c{background:var(--s1);border:1px solid var(--bd);border-radius:6px;margin-bottom:6px;overflow:hidden;transition:.15s}
+.c{background:var(--s1);border:1px solid var(--bd);border-radius:8px;margin-bottom:8px;overflow:hidden;transition:.15s}
 .c:hover{border-color:var(--bd2)}
 .c-h{padding:14px 16px;cursor:pointer;user-select:none}
 .c-b{padding:4px 16px 16px;display:none;border-top:1px solid var(--s3)}
@@ -47,16 +39,16 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px
 
 /* STATS TABLE — Dunks & Threes style */
 .dt{width:100%;border-collapse:collapse;background:var(--s1)}
-.dt th{padding:8px 4px;text-align:center;font-size:9px;font-weight:700;color:var(--sub);letter-spacing:.8px;border-bottom:1px solid var(--bd);cursor:pointer;user-select:none;white-space:nowrap;background:var(--s2)}
+.dt th{padding:9px 5px;text-align:center;font-size:10px;font-weight:800;color:var(--sub);letter-spacing:.8px;border-bottom:2px solid var(--bd);cursor:pointer;user-select:none;white-space:nowrap;background:var(--s2)}
 .dt th.on{color:var(--grn)}
 .dt th:first-child{text-align:left;padding-left:10px}
 .dt td{padding:0;text-align:center;border-bottom:1px solid var(--s3);vertical-align:middle}
 .dt td:first-child{text-align:left;padding:6px 10px}
 .dt tr:hover td{background:var(--s3) !important}
 /* Each stat cell: raw value + percentile underneath, cell bg = percentile color */
-.sc{padding:5px 3px;min-width:48px}
-.sc .rv{font-family:var(--mono);font-size:12px;font-weight:700;color:#f0f2f5}
-.sc .pc{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.65);margin-top:0px}
+.sc{padding:6px 4px;min-width:50px;border-radius:3px;margin:1px}
+.sc .rv{font-family:var(--mono);font-size:13px;font-weight:800;color:#fff}
+.sc .pc{font-family:var(--mono);font-size:9px;font-weight:800;color:rgba(255,255,255,.7);margin-top:1px}
 /* CIR column highlighted */
 .sc.cir{border-left:2px solid var(--bd);border-right:2px solid var(--bd)}
 
@@ -65,7 +57,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px
 .mb-t{display:flex;justify-content:space-between;margin-bottom:2px}
 .mb-l{font-size:10px;color:var(--sub);font-weight:700;letter-spacing:1px}
 .mb-v{font-family:var(--mono);font-size:12px;font-weight:700}
-.mb-b{height:6px;background:var(--s3);border-radius:3px;overflow:hidden}
+.mb-b{height:8px;background:var(--s3);border-radius:4px;overflow:hidden}
 .mb-f{height:100%;border-radius:3px}
 
 /* Heatmap */
@@ -96,11 +88,11 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px
 </style></head><body>
 <div class="w">
 <div class="hd">
-<div><div class="hd-t">CDL War Room</div></div>
+<div><div class="hd-t">CDL War Room <span>v12</span></div></div>
 <div class="hd-m">
 <div class="hd-n"><b>70.2%</b><span>Backtest</span></div>
 <div class="hd-n"><b>48</b><span>Players</span></div>
-<div class="hd-n"><b>12</b><span>Teams</span></div>
+<div class="hd-n"><b>131</b><span>Matches</span></div>
 </div>
 </div>
 <div class="tb" id="TT"></div>
@@ -114,9 +106,6 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px
 <button style="background:var(--s3);color:var(--sub);border:1px solid var(--bd);padding:6px 14px;border-radius:4px;font-weight:600;font-size:11px;cursor:pointer" onclick="xCmp()">Clear</button>
 </div>
 <div class="mo" id="MD"><div class="ml" id="MC"></div></div>
-</div>
-<div style="text-align:center;padding:20px 0 10px;font-size:10px;color:#5e667a;border-top:1px solid #2f3544;margin-top:40px">
-CDL War Room &bull; Player Impact Ratings &bull; Scout Reports &bull; Not affiliated with CDL or Activision
 </div>
 <script>
 // ═══════════════════════════════════════════
@@ -408,7 +397,7 @@ zKeys.forEach(([zk, label]) => {
 })();
 
 // STATE
-let tb="stats",ex=new Set(),sq="",ft="ALL",cL=[],sK="cir",sD=1;
+let tb="home",ex=new Set(),sq="",ft="ALL",cL=[],sK="cir",sD=1;
 
 // CELL BG — Dunks & Threes style: green scale on dark, percentile drives background
 function cBg(p){if(p==null)return"var(--s2)";if(p===100)return"#4c1d95";if(p>=99)return"#064e3b";if(p>=95)return"#065f46";if(p>=90)return"#047857";if(p>=80)return"rgba(16,185,129,.25)";if(p>=60)return"rgba(16,185,129,.12)";if(p>=40)return"transparent";if(p>=20)return"rgba(248,113,113,.10)";return"rgba(248,113,113,.2)"}
@@ -444,7 +433,7 @@ if(ft!=="ALL")all=all.filter(p=>p.t===ft);
 all.sort((a,b)=>{const va=a[sK]||0,vb=b[sK]||0;return(vb-va)*sD});
 let h=`<input class="sr" placeholder="Search players..." value="${sq}" oninput="sq=this.value;R()"/>`;
 h+=`<div class="pl">${["ALL",...Object.keys(TC)].map(t=>`<span class="pp ${ft===t?"on":""}" onclick="ft='${t}';R()">${t}</span>`).join("")}</div>`;
-h+=`<div style="font-size:11px;color:var(--cap);margin:4px 0 8px">${all.length} players &bull; Click headers to sort &bull; Click rows to compare</div>`;
+h+=`<div style="display:flex;gap:6px;align-items:center;margin:8px 0;padding:10px 14px;background:var(--s2);border:1px solid var(--bd);border-radius:6px;flex-wrap:wrap"><span style="font-size:10px;font-weight:700;color:var(--sub);margin-right:4px">CIR SCALE:</span><span style="font-size:10px;font-weight:700;color:#34d399;background:#064e3b;padding:2px 8px;border-radius:3px">+3.0 Elite</span><span style="font-size:10px;font-weight:700;color:#10b981;background:rgba(16,185,129,.15);padding:2px 8px;border-radius:3px">+1.5 Star</span><span style="font-size:10px;font-weight:700;color:var(--tx);background:var(--s3);padding:2px 8px;border-radius:3px">0.0 Average</span><span style="font-size:10px;font-weight:700;color:#fbbf24;background:rgba(251,191,36,.1);padding:2px 8px;border-radius:3px">-1.5 Below Avg</span><span style="font-size:10px;font-weight:700;color:#f87171;background:rgba(248,113,113,.2);padding:2px 8px;border-radius:3px">-3.0 Liability</span><span style="font-size:10px;font-weight:800;color:#e9d5ff;background:#4c1d95;padding:2px 8px;border-radius:3px">100% = #1 in League</span></div><div style="font-size:11px;color:var(--cap);margin:4px 0 8px">${all.length} players &bull; Click headers to sort &bull; Click rows to compare</div>`;
 h+=`<div style="overflow-x:auto;border:1px solid var(--bd);border-radius:6px"><table class="dt"><thead>`;
 h+=`<tr><th colspan="3" style="text-align:left;padding-left:10px;border-right:1px solid var(--bd)">ROLE</th><th colspan="3" style="color:var(--acc);border-right:1px solid var(--bd)">ESTIMATED +/-</th><th style="color:var(--grn);border-right:1px solid var(--bd)"></th><th colspan="3" style="border-right:1px solid var(--bd)">HARDPOINT</th><th colspan="2" style="border-right:1px solid var(--bd)">SND</th><th colspan="2" style="border-right:1px solid var(--bd)">OVERLOAD</th><th colspan="2">IMPACT</th></tr>`;
 h+=`<tr>${sH("Player","n")}${sH("GP","series")}${sH("KD","kd")}${sH("HP","hp")}${sH("SND","snd")}${sH("OVL","ovl")}${sH("CIR","cir")}${sH("HP KD","hp_kd")}${sH("DMG","p_hp_dmg")}${sH("HILL","p_hp_hill")}${sH("SND KD","snd_kd")}${sH("FB%","p_snd")}${sH("OVL KD","ovl_kd")}${sH("OBJ","p_ovl")}${sH("BPR","bpr")}${sH("NTK","p_ntk")}</tr></thead><tbody>`;
@@ -616,12 +605,178 @@ function showPlayer(name, e) {
     document.getElementById("MD").classList.add("on");
 }
 
+
+// ═══ HOME ═══
+function rHome(){
+return `
+<div style="max-width:680px;margin:0 auto;padding:20px 0">
+<div style="text-align:center;margin-bottom:32px">
+<div style="font-size:48px;font-weight:900;color:var(--h);line-height:1.05;letter-spacing:-1.5px">The First Impact Rating<br>System for Competitive CoD</div>
+<p style="font-size:17px;color:var(--sub);margin-top:14px;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto">We tested every stat against actual match results to find what predicts winning — and built a rating system around what we found.</p>
+<div style="display:flex;justify-content:center;gap:8px;margin-top:16px">
+<button style="background:var(--grn);color:#000;padding:12px 28px;border:none;border-radius:6px;font-weight:800;font-size:14px;cursor:pointer" onclick="tb='stats';R()">View Player Ratings</button>
+<button style="background:var(--s3);color:var(--tx);padding:12px 28px;border:1px solid var(--bd);border-radius:6px;font-weight:800;font-size:14px;cursor:pointer" onclick="tb='method';R()">How It Works</button>
+</div>
+</div>
+
+<div style="margin:24px auto 0;max-width:560px;background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:16px 20px">
+<div style="font-size:10px;font-weight:800;color:var(--sub);letter-spacing:1.5px;margin-bottom:10px">TOP 10 CIR RATINGS</div>
+<div></div></div>
+
+<div class="sec">What Makes This Different</div>
+
+<div class="c" style="padding:16px 20px;border-left:3px solid var(--grn);margin-bottom:8px">
+<div style="font-weight:800;font-size:15px;color:var(--h);margin-bottom:4px">CIR (CDL Impact Rating)</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.7">Like basketball's EPM or baseball's WAR. A single number that tells you how much a player contributes to winning. We break it into HP Impact, SND Impact, and OVL Impact so you can see exactly where a player helps or hurts his team.</p>
+</div>
+
+<div class="c" style="padding:16px 20px;border-left:3px solid var(--acc);margin-bottom:8px">
+<div style="font-weight:800;font-size:15px;color:var(--h);margin-bottom:4px">Regression-Backed Weights</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.7">We ran every stat in the CDL against team mode win rates to find what actually predicts winning. BPR predicts 70.5% of Hardpoint outcomes. SND Opening Duel % — a stat most analysts treat as critical — predicts just 6.3%. Our weights are based on what the data says, not conventional wisdom.</p>
+</div>
+
+<div class="c" style="padding:16px 20px;border-left:3px solid #fbbf24;margin-bottom:8px">
+<div style="font-weight:800;font-size:15px;color:var(--h);margin-bottom:4px">Weak Link Analysis</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.7">We discovered that a team's worst player explains 81.6% of their win rate. Their best player only explains 62.2%. CoD is a weak link game — your ceiling doesn't matter if your floor drags you down. That's why Texas (floor: 90) wins and Miami (floor: 73) loses despite having the highest-rated player in the league.</p>
+</div>
+
+<div class="c" style="padding:16px 20px;border-left:3px solid var(--red);margin-bottom:8px">
+<div style="font-weight:800;font-size:15px;color:var(--h);margin-bottom:4px">SOS-Adjusted Records</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.7">Not all wins are equal. Riyadh is 89% against bottom-6 teams but 45% against top-6. Texas is 77% against good teams. We adjust every team's record by the strength of their opponents to separate real contenders from schedule padders.</p>
+</div>
+
+<div class="sec">What You'll Find</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+<div class="bx" style="cursor:pointer;transition:.15s;border-left:3px solid var(--grn)" onclick="tb='stats';R()" onmouseover="this.style.borderColor='var(--grn)'" onmouseout="this.style.borderColor='var(--bd)'">
+<div style="font-weight:800;font-size:14px;color:var(--h);margin-bottom:4px">Stats Database</div>
+<p style="font-size:12px;color:var(--sub)">48 players ranked by CIR with percentile breakdowns across every stat. Sortable. Click any player for a full scouting card.</p>
+</div>
+<div class="bx" style="cursor:pointer;border-left:3px solid var(--acc)" onclick="tb='power';R()">
+<div style="font-weight:700;font-size:13px;color:var(--h);margin-bottom:3px">Power Rankings</div>
+<p style="font-size:12px;color:var(--sub)">12 teams with SOS records, weak link ratings, floor/ceiling analysis, and full roster breakdowns with scout reports.</p>
+</div>
+<div class="bx" style="cursor:pointer;border-left:3px solid #fbbf24" onclick="tb='maps';R()">
+<div style="font-weight:700;font-size:13px;color:var(--h);margin-bottom:3px">Maps & Veto Predictions</div>
+<p style="font-size:12px;color:var(--sub)">Win rates by map AND mode. Team-specific pick/ban predictions explaining why a team picks Den SND but bans Den HP.</p>
+</div>
+<div class="bx" style="cursor:pointer;border-left:3px solid var(--red)" onclick="tb='h2h';R()">
+<div style="font-weight:700;font-size:13px;color:var(--h);margin-bottom:3px">H2H & LAN Profiles</div>
+<p style="font-size:12px;color:var(--sub)">Full head-to-head matrix, kryptonite matchups, and LAN adjustment profiles showing who gets better or worse on stage.</p>
+</div>
+</div>
+
+<div class="sec">Data Sources</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.7;margin-bottom:16px">All raw statistics sourced from <strong style="color:var(--h)">BreakingPoint.gg</strong> — the most comprehensive CDL stats platform. CIR ratings, regression analysis, scout reports, and all analytical work are original to CDL War Room.</p>
+
+</div>`}
+
+// ═══ METHODOLOGY ═══
+function rMethod(){
+return `
+<div style="max-width:720px;margin:0 auto;padding:20px 0">
+<div style="font-size:32px;font-weight:900;color:var(--h);margin-bottom:6px">How CIR Works</div>
+<p style="font-size:15px;color:var(--sub);margin-bottom:28px;line-height:1.8">CIR (CDL Impact Rating) is the first data-driven player impact metric for competitive Call of Duty. Instead of relying on conventional wisdom about which stats matter, we tested everything against actual results.</p>
+
+<div class="sec">The Process</div>
+
+<div style="display:grid;grid-template-columns:48px 1fr;gap:12px;margin-bottom:12px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--grn);border:2px solid var(--grn);flex-shrink:0">1</div>
+<div class="c" style="padding:14px 18px"><div style="font-weight:800;font-size:14px;color:var(--h);margin-bottom:4px">Collect Everything</div><p style="font-size:13px;color:var(--sub);line-height:1.7">We pulled every available player statistic across the full BO7 season — over 40 statistical categories across Hardpoint, Search & Destroy, and Overload for all 48 active CDL players.</p></div>
+</div>
+
+<div style="display:grid;grid-template-columns:48px 1fr;gap:12px;margin-bottom:12px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--grn);border:2px solid var(--grn);flex-shrink:0">2</div>
+<div class="c" style="padding:14px 18px"><div style="font-weight:800;font-size:14px;color:var(--h);margin-bottom:4px">Test Against Winning</div><p style="font-size:13px;color:var(--sub);line-height:1.7">We ran regression analysis on every stat against team mode-specific win rates. Not overall win rate — Hardpoint stats against Hardpoint winning, SND stats against SND winning, Overload stats against Overload winning. This revealed which stats actually drive outcomes and which are just noise.</p></div>
+</div>
+
+<div style="display:grid;grid-template-columns:48px 1fr;gap:12px;margin-bottom:12px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--grn);border:2px solid var(--grn);flex-shrink:0">3</div>
+<div class="c" style="padding:14px 18px"><div style="font-weight:800;font-size:14px;color:var(--h);margin-bottom:4px">Weight By Predictive Power</div><p style="font-size:13px;color:var(--sub);line-height:1.7">Stats that strongly predict winning get high weight in CIR. Stats that weakly predict winning get low weight or are excluded entirely. The weights are not chosen by opinion — they come directly from what the data shows.</p></div>
+</div>
+
+<div style="display:grid;grid-template-columns:48px 1fr;gap:12px;margin-bottom:12px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--grn);border:2px solid var(--grn);flex-shrink:0">4</div>
+<div class="c" style="padding:14px 18px"><div style="font-weight:800;font-size:14px;color:var(--h);margin-bottom:4px">Combine Into One Number</div><p style="font-size:13px;color:var(--sub);line-height:1.7">CIR combines mode-specific impact scores (HP Impact, SND Impact, OVL Impact) into a single net rating. A positive CIR means you help your team win. A negative CIR means you hurt it. Like EPM in basketball or WAR in baseball — one number that captures total value.</p></div>
+</div>
+
+<div style="display:grid;grid-template-columns:48px 1fr;gap:12px;margin-bottom:20px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--grn);border:2px solid var(--grn);flex-shrink:0">5</div>
+<div class="c" style="padding:14px 18px"><div style="font-weight:800;font-size:14px;color:var(--h);margin-bottom:4px">Validate</div><p style="font-size:13px;color:var(--sub);line-height:1.7">We backtested our model against 131 matches across the entire BO7 season. It correctly predicts the series winner 70.2% of the time, which approaches the theoretical ceiling for a game with CoD's inherent variance.</p></div>
+</div>
+
+<div class="sec">What We Discovered</div>
+
+<div class="c" style="padding:18px 20px;border-left:3px solid var(--grn);margin-bottom:8px">
+<div style="font-weight:800;font-size:15px;color:var(--h);margin-bottom:6px">Some Stats Are Far More Predictive Than Others</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.8">The stat most analysts consider secondary turned out to be the strongest predictor of Hardpoint and Overload winning — significantly more predictive than K/D. Meanwhile, certain stats that are treated as critical (like SND Opening Duel %) turned out to predict almost nothing about team SND outcomes.</p>
+</div>
+
+<div class="c" style="padding:18px 20px;border-left:3px solid #fbbf24;margin-bottom:8px">
+<div style="font-weight:800;font-size:15px;color:var(--h);margin-bottom:6px">SND Cannot Be Predicted From Individual Stats</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.8">This was the biggest surprise. No individual stat — not K/D, not first blood rate, not kills per round — predicts SND team winning well. SND success is driven by comms, rotations, and team execution. This is why Cloud9 has an above-average SND win rate but is 3-16 overall. You cannot scout SND from a spreadsheet.</p>
+</div>
+
+<div class="c" style="padding:18px 20px;border-left:3px solid var(--red);margin-bottom:8px">
+<div style="font-weight:800;font-size:15px;color:var(--h);margin-bottom:6px">Pace Does Not Equal Impact</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.8">Engagement rate — how many fights a player takes — turned out to be essentially random as a predictor of winning. Taking a lot of fights does not help your team if you lose those fights. Some of the highest-engagement players in the league have the worst impact ratings.</p>
+</div>
+
+<div class="c" style="padding:18px 20px;border-left:3px solid var(--acc);margin-bottom:8px">
+<div style="font-weight:800;font-size:15px;color:var(--h);margin-bottom:6px">CoD Is a Weak Link Game</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.8">A team's worst player predicts over 80% of their win rate. Their best player predicts just over 60%. The talent gap between your best and worst player is statistically irrelevant. This means having a superstar matters less than having no liabilities. It is why the team with the highest-rated player in the league is not the best team — but the team with the highest floor is.</p>
+</div>
+
+<div class="sec">Data & Attribution</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.8;margin-bottom:8px">All raw statistics are sourced from <strong style="color:var(--h)">BreakingPoint.gg</strong>, the most comprehensive CDL stats platform. We are grateful for their work in collecting and maintaining this data.</p>
+<p style="font-size:13px;color:var(--sub);line-height:1.8">CIR ratings, regression methodology, player scout reports, weak link analysis, strength of schedule adjustments, archetype classifications, and all analytical interpretation are original to <strong style="color:var(--h)">CDL War Room</strong>.</p>
+
+</div>`}
+
+// ═══ GLOSSARY ═══
+function rGloss(){
+const stats = [
+["CIR (CDL Impact Rating)","CDL War Room Original","A single number measuring a player's net contribution to winning, like EPM in basketball. Combines HP Impact, SND Impact, and OVL Impact using regression-backed weights. Positive CIR means you help your team win. Negative means you hurt it. Range is roughly +4 to -4. The 100th percentile (purple) means you are #1 in the league at that stat."],
+["HP Impact","CDL War Room Original","A player's estimated contribution to Hardpoint winning specifically. Built from BPR, HP KD, NTK, HP Damage, and Hill Time weighted by how much each stat actually predicts HP outcomes."],
+["SND Impact","CDL War Room Original","A player's estimated contribution to SND winning. The weakest of the three mode impacts because SND is largely unpredictable from individual stats."],
+["OVL Impact","CDL War Room Original","A player's estimated contribution to Overload winning. Built from BPR, OVL KD, Goals, and NTK."],
+["Floor / Ceiling","CDL War Room Original","Floor is the OVR rating of a team's worst player. Ceiling is their best player. We found that Floor explains 81.6% of team winning while Ceiling explains 62.2%. A team's floor matters more than its ceiling."],
+["SOS (Strength of Schedule)","CDL War Room Original","Average win percentage of a team's opponents, weighted by games played. Shows whether a team's record was built against good competition or weak opponents."],
+["Percentile (1-100)","CDL War Room Original","Where a player ranks among all CDL starters for a given stat. 50th means league average. 90th means top 5 in the league. 100th (shown in purple) means #1 in the entire league for that stat."],
+["BPR (BreakingPoint Rating)","BreakingPoint.gg","A proprietary impact metric from BreakingPoint.gg that captures hidden contributions beyond kills and deaths — trades, map control, positioning. Our analysis found BPR is the single strongest predictor of both HP and OVL winning — significantly more predictive than raw K/D."],
+["K/D (Kill/Death Ratio)","Standard","Kills divided by deaths. The most commonly cited stat in CoD. Useful but incomplete — it does not capture objective play, trades, or positioning. A player can have a 1.00 KD but a 1.15 BPR because they make winning plays that do not show up in the killfeed."],
+["NTK (Non-Traded Kill %)","BreakingPoint.gg","The percentage of a player's kills that are not immediately traded back by the opponent. High NTK means you get kills that stick — the enemy stays dead and your team gets the numbers advantage. Low NTK means your kills get traded instantly."],
+["HP KD","Standard","Kill/Death ratio in Hardpoint specifically. A strong predictor of HP winning, but our analysis found it is less predictive than BPR for team outcomes."],
+["HP DMG/10m","Standard","Damage dealt per 10 minutes in Hardpoint. Measures how much space a player creates through damage output. Scrap leads the league at roughly 3700 per 10 minutes."],
+["HP Hill Time/10m","Standard","Seconds spent on the Hardpoint hill per 10 minutes. Measures objective commitment. Cellium leads at 94.5 seconds. High hill time usually means lower K/D because you absorb deaths while anchoring."],
+["SND KD","Standard","Kill/Death ratio in Search & Destroy. Predicts 22.6% of SND team winning — less predictive than most analysts assume."],
+["SND OD% (Opening Duel Win %)","BreakingPoint.gg","Percentage of first gunfights won in SND rounds. SupeR leads at roughly 71%. Our analysis found this stat is far less predictive of SND team winning than conventional wisdom suggests — one of our most surprising findings."],
+["SND KpR (Kills Per Round)","Standard","Average kills per SND round. Measures SND pace and aggression."],
+["OVL KD","Standard","Kill/Death ratio in Overload. Predicts 39.9% of OVL team winning."],
+["OVL Goals/10m","Standard","Objective goals scored per 10 minutes in Overload. Exceed leads the league. Measures pure OBJ commitment."],
+["TES (Trade Efficiency Score)","BreakingPoint.gg","Measures how efficiently a player trades kills with teammates. Our analysis identified TES as one of the most undervalued stats in the CDL — it predicts winning far better than most commonly cited metrics."],
+["LAN Adjustment","CDL War Room Original","The average change in a player's KD between online matches and LAN events, calculated across 6 BO6 LAN tournaments. Positive means the player gets better on stage. Negative means they get worse. Shotzzy is +0.11 (gets better). Scrap is -0.02 (stays the same). Huke is -0.08 (gets worse)."],
+["Archetype","CDL War Room Original","A descriptive label for how a player actually plays, based on their statistical profile across all modes. Examples: 'Opening Playmaker' (SupeR — wins first fights), 'Damage Engine' (Scrap — highest HP damage output), 'OBJ Specialist' (Ghosty — wins through hill time not kills), 'Pace Without Purpose' (Envoy — high engagement, loses most fights)."]
+];
+return `
+<div style="max-width:720px;margin:0 auto;padding:20px 0">
+<div style="font-size:32px;font-weight:900;color:var(--h);margin-bottom:6px">Stat Glossary</div>
+<p style="font-size:14px;color:var(--sub);margin-bottom:20px;line-height:1.7">Every metric on CDL War Room explained — what it measures, where it comes from, and why it matters.</p>
+${stats.map(([name,source,desc]) => `<div class="c" style="padding:14px 18px;margin-bottom:6px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+<span style="font-weight:800;font-size:14px;color:var(--h)">${name}</span>
+<span class="bg" style="color:${source==="CDL War Room Original"?"var(--grn)":source==="BreakingPoint.gg"?"var(--acc)":"var(--sub)"};background:${source==="CDL War Room Original"?"rgba(16,185,129,.1)":source==="BreakingPoint.gg"?"rgba(96,165,250,.1)":"var(--s3)"};flex-shrink:0">${source}</span>
+</div>
+<p style="font-size:13px;color:var(--sub);line-height:1.7">${desc}</p>
+</div>`).join("")}
+</div>`}
+
 // ═══ RENDER ═══
 function R(){
-const ts=[["stats","Stats"],["power","Power Rankings"],["maps","Maps & Vetos"],["h2h","H2H & LAN"],["moves","Roster"]];
+const ts=[["home","Home"],["stats","Stats"],["power","Power Rankings"],["maps","Maps & Vetos"],["h2h","H2H & LAN"],["moves","Roster"],["method","How It Works"],["gloss","Glossary"]];
 document.getElementById("TT").innerHTML=ts.map(([k,l])=>`<button class="${tb===k?"on":""}" onclick="tb='${k}';R()">${l}</button>`).join("");
 const a=document.getElementById("A");
-switch(tb){case"stats":a.innerHTML=rStats();break;case"power":a.innerHTML=rP();break;case"maps":a.innerHTML=rM();break;case"h2h":a.innerHTML=rH();break;case"moves":a.innerHTML=rMv();break;}}
+switch(tb){case"home":a.innerHTML=rHome();break;case"stats":a.innerHTML=rStats();break;case"power":a.innerHTML=rP();break;case"maps":a.innerHTML=rM();break;case"h2h":a.innerHTML=rH();break;case"moves":a.innerHTML=rMv();break;case"method":a.innerHTML=rMethod();break;case"gloss":a.innerHTML=rGloss();break}}
 R();
 
 </script>
