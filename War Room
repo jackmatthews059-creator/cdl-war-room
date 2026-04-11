@@ -1,4 +1,36 @@
-import { useState, useMemo, useCallback } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDL War Room v25 — cdlwarroom.com</title>
+<meta name="description" content="CDL War Room — Advanced Call of Duty League analytics. VMP ratings, player evaluations, power rankings, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#030712;color:#e2e8f0;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:rgba(0,240,255,.02)}
+::-webkit-scrollbar-thumb{background:rgba(0,240,255,.15);border-radius:4px}
+input::placeholder{color:#374151}
+button:hover{opacity:.85}
+table{border-spacing:0}
+td,th{white-space:nowrap}
+@media(max-width:640px){
+  td,th{padding:3px 2px!important;font-size:8px!important}
+  table{font-size:8px!important}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<script type="text/babel">
+const {useState, useMemo, useCallback} = React;
+
 
 // ═══ TEAM COLORS ═══
 const TC={"TX":"#92c83e","FV":"#e040a0","LAT":"#dc2626","RYD":"#22d3ee","MIA":"#f97316","TOR":"#a855f7","MIN":"#818cf8","M8":"#c084fc","CAR":"#60a5fa","BOS":"#34d399","VAN":"#38bdf8","C9":"#64748b"};
@@ -133,7 +165,7 @@ const oc=o=>o>=88?"#00f0ff":o>=82?"#22d3ee":o>=76?"#67e8f9":o>=72?"#94a3b8":"#f9
 const kc=k=>k>=1.1?"#00f0ff":k>=1.03?"#22d3ee":k>=.97?"#94a3b8":k>=.91?"#f97316":"#ef4444";
 const sc=v=>v>=3?"#00f0ff":v>=1?"#22d3ee":v>=-.5?"#94a3b8":v>=-2?"#f97316":"#ef4444";
 
-export default function App(){
+function App(){
   const [tab,setTab]=useState("vmp");
   const [period,setPeriod]=useState("szn");
   const [search,setSearch]=useState("");
@@ -646,3 +678,9 @@ SI[p.n].s < 35 && SI[p.n].i < 35 ? "Both talent and production below CDL starter
     {selP&&<Modal p={selP}/>}
   </div>;
 }
+
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
